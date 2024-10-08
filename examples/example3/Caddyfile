@@ -1,0 +1,25 @@
+{
+  auto_https disable_redirects
+  admin off
+}
+
+http://example.com {
+  bind fd/3 {
+    protocols h1
+  }
+  log
+  respond "Hello world
+"
+}
+
+https://example.com {
+  bind fd/4 {
+    protocols h1 h2
+  }
+  bind fdgram/5 {
+    protocols h3
+  }
+  log
+  respond "Hello world
+"
+}

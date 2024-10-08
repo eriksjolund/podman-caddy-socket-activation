@@ -1,0 +1,5 @@
+[Container]
+Exec=/usr/bin/caddy run --config /etc/caddy/Caddyfile
+Image=localhost/caddy
+Network=mynet.network
+Volume=%h/Caddyfile:/etc/caddy/Caddyfile:Z
