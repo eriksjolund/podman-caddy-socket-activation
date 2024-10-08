@@ -1,0 +1,21 @@
+{
+  auto_https disable_redirects
+  admin off
+}
+
+http://whoami.example.com {
+  bind fd/3 {
+    protocols h1
+  }
+  log
+  reverse_proxy whoami.example.com:80
+}
+
+http://nginx.example.com {
+  bind fd/3 {
+    protocols h1
+  }
+  log
+  reverse_proxy nginx.example.com:80
+}
+
