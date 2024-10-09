@@ -104,7 +104,7 @@ resolvable in public DNS.
    <title>Welcome to nginx!</title>
    ```
    __result:__ The default nginx web page was downloaded
-1. Download the URL __http://whoami.example.com__ from the caddy
+1. Download the URL __http://whoami.example.com:8080__ from the caddy
    container and see that the request is proxied to the container _whoami_.
    Resolve _whoami.example.com_ to _127.0.0.1_.
    ```
@@ -129,9 +129,9 @@ resolvable in public DNS.
    __result:__ The IPv4 address of the main network interface is _192.168.10.108_
    (the address furthest to the left). Note, the detected IP address will
    most probably be different when you try it out on your system.
-1. Download the URL __http://whoami__ from the caddy
+1. Download the URL __http://whoami.example.com:8080__ from the caddy
    container and see that the request is proxied to the container _whoami_.
-   Resolve _whoami_ to the IP address of the main network interface.
+   Resolve _whoami.example.com_ to the IP address of the main network interface.
    Use the IP address that was detected in the previous step.
    ```
    curl -s --resolve whoami.example.com:8080:192.168.10.108 \
