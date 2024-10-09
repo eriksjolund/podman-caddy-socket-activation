@@ -92,10 +92,20 @@ Caddy is configured to reply _hello world_.
 
 ### Discussion
 
-Note that the file _caddy.container_ has the configuration line
+In the example caddy fetches a TLS certificate with the ACME protocol.
+
+An alternative to this is to provide the TLS certificate yourself by specifying
+a path to a cert file and a path to a key file. For details, see
+https://caddyserver.com/docs/caddyfile/directives/tls
+
+If you provide the TLS certificate yourself, then the caddy container does not
+need to create any outgoing TCP connections for the ACME protocol.
+You could then add the configuration line 
 
 ```
 Network=none
 ```
 
-This improves security. For details, see the blog post [_How to limit container privilege with socket activation_](https://www.redhat.com/sysadmin/socket-activation-podman)
+to the file _caddy.container_. This improves security.
+For details, see the blog post
+[_How to limit container privilege with socket activation_](https://www.redhat.com/sysadmin/socket-activation-podman)

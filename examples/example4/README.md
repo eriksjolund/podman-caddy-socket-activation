@@ -178,18 +178,23 @@ Requests to https://nginx.example.com are forwarded to the _nginx_ container.
 
 ### Using `Internal=true`
 
-The file [_mynet.network_](mynet.network) currently contains
+In the example caddy fetches a TLS certificate with the ACME protocol.
+
+An alternative to this is to provide the TLS certificate yourself by specifying
+a path to a cert file and a path to a key file. For details, see
+https://caddyserver.com/docs/caddyfile/directives/tls
+
+Creating outgoing connections is needed when using the ACME protocol.
+If you provide the TLS certificate yourself, then the caddy container does not use the
+ACME protocol. You could then append the line
 
 ```
-[Network]
 Internal=true
 ```
 
-The line
+to [mynet.network](mynet.network).
 
-```
-Internal=true
-```
+This improves security. For details, see the blog post
+[_How to limit container privilege with socket activation_](https://www.redhat.com/sysadmin/socket-activation-podman)
 
-prevents containers on the network to connect to the internet.
-To allow containers on the network to download files from the internet you would need to remove the line.
+However, `Internal=true` will also prevent the other containers on the network _mynet_ from connecting to the internet.
