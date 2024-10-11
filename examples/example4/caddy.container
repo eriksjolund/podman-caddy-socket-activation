@@ -2,4 +2,5 @@
 Exec=/usr/bin/caddy run --config /etc/caddy/Caddyfile
 Image=localhost/caddy
 Network=none
+Notify=true
 Volume=%h/Caddyfile:/etc/caddy/Caddyfile:Z

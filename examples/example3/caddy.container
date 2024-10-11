@@ -1,4 +1,5 @@
 [Container]
 Exec=/usr/bin/caddy run --config /etc/caddy/Caddyfile
 Image=localhost/caddy
+Notify=true
 Volume=%h/Caddyfile:/etc/caddy/Caddyfile:Z
