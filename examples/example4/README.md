@@ -63,7 +63,7 @@ Requests to https://nginx.example.com are forwarded to the _nginx_ container.
    ```
 1. Pull the _whoami_ container image
    ```
-   podman pull docker.io/caddy/whoami
+   podman pull docker.io/traefik/whoami
    ```
 1. Clone git repo
    ```

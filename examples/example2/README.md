@@ -75,7 +75,7 @@ resolvable in public DNS.
    ```
 1. Pull the _whoami_ container image
    ```
-   podman pull docker.io/caddy/whoami
+   podman pull docker.io/traefik/whoami
    ```
 1. Pull the nginx container image
    ```
