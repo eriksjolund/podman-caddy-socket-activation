@@ -26,8 +26,23 @@ Requests to https://nginx.example.com are forwarded to the _nginx_ container.
    ```
    cat /proc/sys/net/ipv4/ip_unprivileged_port_start
    ```
-   Make sure the number printed is not higher than 80. To configure the number,
-   see https://rootlesscontaine.rs/getting-started/common/sysctl/#allowing-listening-on-tcp--udp-ports-below-1024
+   Make sure the number printed is not higher than 80. To configure a new port number
+   (for example 80), create the file _/etc/sysctl.d/99-mysettings.conf_
+   with the contents:
+   ```
+   net.ipv4.ip_unprivileged_port_start=80
+   ```
+   and reload the configuration
+   ```
+   sudo sysctl --system
+   ```
+   Note, allowing unprivileged users to listen on ports below 1024 can be a security concern.
+   For example, if another user on your system would start a web server on the same ports,
+   that web server could impersionate as your web server. This security concern can be avoided
+   by running Caddy in a systemd system service instead, thus using rootful Podman instead of
+   rootless Podman.
+   See Example 5 (_TODO: create example 5_) for how to run a Caddy reverse proxy with rootful Podman
+   in a systemd system service.
 1. Verify that the domain names _nginx.example.com_ and _whoami.example.com_ resolve to
    the IP address of the host's main IPv4 interface.
    Run commands to resolve the hostnames.
