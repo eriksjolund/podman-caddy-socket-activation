@@ -13,6 +13,7 @@ ListenDatagram=0.0.0.0:443
 ### socket for the admin API endpoint
 # fd/6
 ListenStream=%t/caddy.sock
+SocketMode=0600
 
 [Install]
 WantedBy=sockets.target
