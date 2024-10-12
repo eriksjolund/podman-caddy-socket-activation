@@ -107,7 +107,7 @@ Configure _socket activation_ for the unix socket _~/caddy.sock_. Let Caddy use 
    cp podman-caddy-socket-activation/examples/example4/Caddyfile \
       ~/Caddyfile
    ```
-   (The path _~/Caddyfile_ was chosen rather arbitrarily)
+   (The path _~/Caddyfile_ was arbitrarily chosen)
 1. Edit _~/Caddyfile_ so that _example.com_ is replaced with the hostname of
    your computer.
 1. Reload the systemd user manager
