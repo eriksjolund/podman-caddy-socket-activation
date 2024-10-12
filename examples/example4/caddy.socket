@@ -2,7 +2,7 @@
 
 ### sockets for the HTTP reverse proxy
 # fd/3
-ListenStream=0.0.0.0:800
+ListenStream=0.0.0.0:80
 
 # fd/4
 ListenStream=0.0.0.0:443
