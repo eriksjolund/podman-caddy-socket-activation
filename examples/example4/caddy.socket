@@ -1,7 +1,21 @@
 [Socket]
+
+### sockets for the HTTP reverse proxy
+# fd/3
 ListenStream=0.0.0.0:800
+
+# fd/4
 ListenStream=0.0.0.0:443
+
+# fdgram/5
 ListenDatagram=0.0.0.0:443
+
+### socket for the admin API endpoint
+# fd/6
+ListenStream=%t/caddy.sock
 
 [Install]
 WantedBy=sockets.target
+
+# For an exaplanation of systemd specifier "%t",
+# see https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html
