@@ -1,6 +1,6 @@
 {
   auto_https disable_redirects
-  admin off
+  admin fd/6
 }
 
 http://whoami.example.com {

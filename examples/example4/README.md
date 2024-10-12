@@ -14,12 +14,15 @@ graph TB
 
 Set up a systemd user service _example4.service_ for the user _test_ where rootless podman is running
 the container image _localhost/caddy_.
-Configure _socket activation_ for the ports 80/TCP, 443/TCP and 443/UDP.
-A TLS certificate is automatically retrieved with the
-[ACME](https://en.wikipedia.org/wiki/Automatic_Certificate_Management_Environment) prototol.
-The caddy container is acting as a HTTP reverse proxy that forwards requests to 2 backends.
+The caddy container is acting as an HTTP reverse proxy that forwards requests to 2 backends.
 Requests to https://whoami.example.com are forwarded to the _whoami_ container.
 Requests to https://nginx.example.com are forwarded to the _nginx_ container.
+Configure _socket activation_ for the ports 80/TCP, 443/TCP and 443/UDP. Let Caddy use these ports
+for the HTTP reverse proxy.
+A TLS certificate is automatically retrieved with the
+[ACME](https://en.wikipedia.org/wiki/Automatic_Certificate_Management_Environment) prototol.
+Configure _socket activation_ for the unix socket _~/caddy.sock_. Let Caddy use this socket for the
+[admin API endpoint](https://caddyserver.com/docs/api).
 
 1. Verify that unprivileged users are allowed to open port numbers 80 and above.
    Run the command
@@ -189,6 +192,28 @@ Requests to https://nginx.example.com are forwarded to the _nginx_ container.
    <html>
    <head>
    <title>Welcome to nginx!</title>
+   ```
+1. Access the _admin API endpoint_.
+   ```
+   curl -s -H "Host: " --unix-socket $XDG_RUNTIME_DIR/caddy.sock http://localhost/config/ | jq . | head -15
+   ```
+   The following output is printed
+   ```
+   {
+     "admin": {
+       "listen": "fd/6"
+     },
+     "apps": {
+       "http": {
+	 "servers": {
+	   "srv0": {
+	     "automatic_https": {
+	       "disable_redirects": true,
+	       "skip": [
+		 "whoami.example.com",
+		 "nginx.example.com"
+	       ]
+	     },
    ```
 
 ### Using `Internal=true`
