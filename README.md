@@ -16,9 +16,38 @@ Overview of the examples
 > [!WARNING]
 > Currently I have only verified that _Example 1_ and _Example 2_ works. Consider _Example 3_, _Example 4_ as being work in progress.
 
-### Advantages of using rootless Podman with socket activation
 
-See https://github.com/eriksjolund/podman-nginx-socket-activation?tab=readme-ov-file#advantages-of-using-rootless-podman-with-socket-activation
+## Using Caddy with socket activation
+
+While Caddy can create sockets by itself, there are security and performance advantages to using
+a service manager, such as systemd, for creating the sockets.
+Caddy does not need to create listening sockets as long as Caddy inherits those sockets
+from its parent process. This technique, commonly named _socket activation_, is
+supported for example when Caddy is running as a systemd service. Optionally Podman can start
+Caddy in the systemd service in case you want to run Caddy in a container.
+
+Using _socket activation_ allows you to run Caddy with fewer privileges
+because Caddy would not need the privilege to create a socket.
+For example if Podman is running Caddy as a static web server, then it is possible
+to enable the Podman option `--network=none` which improves security.
+However, obtaining a publicly-trusted TLS certificate with the ACME protocol
+is not possible when using `--network=none` because
+Caddy then needs to connect to the internet.
+
+Using _socket activation_ improves network performance when Caddy is run by rootless Podman in a systemd service.
+When using rootless Podman, network traffic is normally passed through Slirp4netns or Pasta.
+This comes with a performance penalty. Fortunately, communication over the socket-activated
+socket does not pass through Slirp4netns or Pasta so it has the same performance characteristics
+as the normal network on the host.
+
+The source IP address in TCP connections is preserved when using socket activation.
+This can otherwise be a problem when using rootless Podman with Pasta.
+Source IP addresses are not preserved in TCP connections from ports that were published the
+conventional way, that is with `--publish`, if the container is running in an internal network
+by rootless Podman with Pasta.
+
+For more details about advantages of using socket activation with Podman, see
+https://github.com/eriksjolund/podman-nginx-socket-activation?tab=readme-ov-file#advantages-of-using-rootless-podman-with-socket-activation
 
 ### Support for socket activation in Caddy
 
