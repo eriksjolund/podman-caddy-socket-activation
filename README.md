@@ -13,10 +13,6 @@ Overview of the examples
 | [Example 3](examples/example3) | systemd user service | 80/TCP, 443/TCP, 443/UDP | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | rootless podman | hello world web server |
 | [Example 4](examples/example4) | systemd user service | 80/TCP, 443/TCP, 443/UDP | :heavy_check_mark: |  :heavy_check_mark: | :heavy_check_mark: | rootless podman | http reverse proxy with TCP backends |
 
-> [!WARNING]
-> Currently I have only verified that _Example 1_ and _Example 2_ works. Consider _Example 3_, _Example 4_ as being work in progress.
-
-
 ## Using Caddy with socket activation
 
 While Caddy can create sockets by itself, there are security and performance advantages to using
