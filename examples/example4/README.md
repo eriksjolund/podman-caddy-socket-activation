@@ -13,7 +13,7 @@ graph TB
 ```
 
 Set up a systemd user service _example4.service_ for the user _test_ where rootless podman is running
-the container image _localhost/caddy_.
+the container image _docker.io/library/caddy:2.9.0-beta.3_.
 The caddy container is acting as an HTTP reverse proxy that forwards requests to 2 backends.
 Requests to https://whoami.example.com are forwarded to the _whoami_ container.
 Requests to https://nginx.example.com are forwarded to the _nginx_ container.
