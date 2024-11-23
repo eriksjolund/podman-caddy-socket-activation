@@ -52,10 +52,8 @@ Socket activation support was added to Caddy in
 * https://github.com/caddyserver/caddy/pull/6573
 
 Socket activation support is planned for Caddy 2.9.0 (yet to be released).
-I have not found any official pre-release Caddy container image with _socket activation_ support.
-
-For instructions of how to build a Caddy container image from source code with Podman,
-see [./build_caddy_container_image.md](./build_caddy_container_image.md)
+For the moment being you can use _docker.io/library/caddy:2.9.0-beta.3_
+which has socket activation support.
 
 Caddy does not make use of file descriptor names that can be retrieved with [sd_listen_fds_with_names()](https://www.freedesktop.org/software/systemd/man/latest/sd_listen_fds.html).
 Instead file descriptor numbers are specified.
