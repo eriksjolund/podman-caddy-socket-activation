@@ -22,21 +22,21 @@ https://whoami.example.com {
 	reverse_proxy whoami.example.com:80
 }
 
-http://nginx.example.com {
-	bind fd/3 {
-		protocols h1
-	}
-	log
-	reverse_proxy nginx.example.com:80
+http://static.example.com {
+       bind fd/3 {
+               protocols h1
+       }
+       root * /static
+       file_server
 }
 
-https://nginx.example.com {
-	bind fd/4 {
-		protocols h1 h2
-	}
-	bind fdgram/5 {
-		protocols h3
-	}
-	log
-	reverse_proxy nginx.example.com:80
+https://static.example.com {
+       bind fd/4 {
+               protocols h1 h2
+       }
+       bind fdgram/5 {
+               protocols h3
+       }
+       root * /static
+       file_server
 }
