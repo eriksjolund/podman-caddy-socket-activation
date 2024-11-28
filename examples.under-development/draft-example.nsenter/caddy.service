@@ -1,0 +1,64 @@
+[Unit]
+AssertPathExists=/srv/caddy/Caddyfile
+AssertPathIsDirectory=/srv/caddy/caddy_static
+
+[Service]
+CapabilityBoundingSet=
+Delegate=false
+DevicePolicy=closed
+IPAddressAllow=
+IPAddressDeny=any
+KeyringMode=private
+LimitNOFILE=1048576
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+NoNewPrivileges=yes
+PAMName=login
+PrivateDevices=yes
+PrivateNetwork=yes
+PrivateTmp=yes
+ProcSubset=pid
+ProtectClock=yes
+ProtectControlGroups=yes
+ProtectHome=yes
+ProtectHostname=yes
+ProtectKernelLogs=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+ProtectProc=invisible
+ProtectSystem=strict
+RemoveIPC=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=mnt user net
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+SystemCallArchitectures=native
+SystemCallFilter=~@clock
+SystemCallFilter=~@debug
+SystemCallFilter=~@module
+SystemCallFilter=~@mount
+SystemCallFilter=~@privileged
+SystemCallFilter=~@reboot
+SystemCallFilter=~@resources
+SystemCallFilter=~@swap
+SystemCallFilter=~CAP_SYS_BOOT
+
+UMask=0777
+Type=notify
+User=test
+Group=test
+
+ExecStart=bash -c "exec nsenter \
+   --preserve-credentials \
+   --net=/proc/$(cat $XDG_RUNTIME_DIR/containers/networks/aardvark-dns/aardvark.pid)/ns/net \
+   --user=/proc/$(cat $XDG_RUNTIME_DIR/libpod/tmp/pause.pid)/ns/user \
+   --mount=/proc/$(cat $XDG_RUNTIME_DIR/libpod/tmp/pause.pid)/ns/mnt \
+   /usr/local/bin/caddy run --environ --config /srv/caddy/Caddyfile"
+
+TimeoutStopSec=5s
+
+Environment="XDG_CONFIG_HOME=/srv/caddy/caddy_config"
+Environment="XDG_DATA_HOME=/srv/caddy/caddy_data"
+
+[Install]
+WantedBy=multi-user.target
