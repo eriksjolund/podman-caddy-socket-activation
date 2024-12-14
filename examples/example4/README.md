@@ -8,15 +8,15 @@ _Example 4_ is similar to _Example 2_ but _Example 4_ also provides HTTP/3 suppo
 graph TB
 
     a1[curl] -.->a2[caddy container reverse proxy]
-    a2 -->|"for https&colon;//whoami.example.com"| a3["whoami container"]
-    a2 -->|"for https&colon;//nginx.example.com"| a4["nginx container"]
+    a2 -->|"for https&colon;//static.example.com"| a3["handled internally by caddy file_server"]
+    a2 -->|"for https&colon;//whoami.example.com"| a4["whoami container"]
 ```
 
 Set up a systemd user service _example4.service_ for the user _test_ where rootless podman is running
 the container image _docker.io/library/caddy:2.9.0-beta.3_.
-The caddy container is acting as an HTTP reverse proxy that forwards requests to 2 backends.
-Requests to https://whoami.example.com are forwarded to the _whoami_ container.
-Requests to https://nginx.example.com are forwarded to the _nginx_ container.
+The caddy container is acting as an HTTP reverse proxy that forwards requests for
+https://whoami.example.com to a _whoami_ container.
+Caddy is also configured to be a static file server for requests to https://static.example.com.
 Configure _socket activation_ for the ports 80/TCP, 443/TCP and 443/UDP. Let Caddy use these ports
 for the HTTP reverse proxy.
 A TLS certificate is automatically retrieved with the
@@ -102,6 +102,11 @@ Configure _socket activation_ for the unix socket _~/caddy.sock_. Let Caddy use 
    cp podman-caddy-socket-activation/examples/example4/caddy.socket \
       ~/.config/systemd/user/
    ```
+1. Install volume units
+   ```
+   cp podman-caddy-socket-activation/examples/example4/*.volume \
+      ~/.config/containers/systemd/
+   ```
 1. Install the _Caddyfile_
    ```
    cp podman-caddy-socket-activation/examples/example4/Caddyfile \
@@ -110,6 +115,14 @@ Configure _socket activation_ for the unix socket _~/caddy.sock_. Let Caddy use 
    (The path _~/Caddyfile_ was arbitrarily chosen)
 1. Edit _~/Caddyfile_ so that _example.com_ is replaced with the hostname of
    your computer.
+1. Create directory for static files
+   ```
+   mkdir ~/caddy_static
+   ```
+1. Create a static files
+   ```
+   echo "my static file" > ~/caddy_static/file.txt
+   ```
 1. Reload the systemd user manager
    ```
    systemctl --user daemon-reload
@@ -117,10 +130,6 @@ Configure _socket activation_ for the unix socket _~/caddy.sock_. Let Caddy use 
 1. Start the _whoami_ container
    ```
    systemctl --user start whoami.service
-   ```
-1. Start the _whoami_ container
-   ```
-   systemctl --user start nginx.service
    ```
 1. Start the caddy socket
    ```
@@ -181,39 +190,24 @@ Configure _socket activation_ for the unix socket _~/caddy.sock_. Let Caddy use 
    192.0.2.18
    ```
    __result:__ The IPv4 address of _X-Forwarded-For_ matches the IP address of the other computer.
-1. Download the URL __https://nginx.example.com__ and see that the request is proxied to the container _nginx_.
+1. Download the URL __https://static.example.com/file.txt__
    Run the command
    ```
-   curl https://nginx.example.com | head -4
+   curl https://static.example.com/file.txt
    ```
    The following output is printed
    ```
-   <!DOCTYPE html>
-   <html>
-   <head>
-   <title>Welcome to nginx!</title>
+   my static file
    ```
 1. Access the _admin API endpoint_.
    ```
-   curl -s -H "Host: " --unix-socket $XDG_RUNTIME_DIR/caddy.sock http://localhost/config/ | jq . | head -15
-   ```
-   The following output is printed
+   curl -s -H "Host: " --unix-socket $XDG_RUNTIME_DIR/caddy.sock http://localhost/config/ | jq . | head -4
    ```
    {
      "admin": {
        "listen": "fd/6"
      },
      "apps": {
-       "http": {
-	 "servers": {
-	   "srv0": {
-	     "automatic_https": {
-	       "disable_redirects": true,
-	       "skip": [
-		 "whoami.example.com",
-		 "nginx.example.com"
-	       ]
-	     },
    ```
 
 ### Using `Internal=true`

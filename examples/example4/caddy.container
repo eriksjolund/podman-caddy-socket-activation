@@ -1,6 +1,13 @@
+[Unit]
+AssertPathExists=%h/Caddyfile
+AssertPathIsDirectory=%h/caddy_static
+
 [Container]
 Exec=/usr/bin/caddy run --config /etc/caddy/Caddyfile
 Image=docker.io/library/caddy:2.9.0-beta.3
 Network=mynet.network
 Notify=true
 Volume=%h/Caddyfile:/etc/caddy/Caddyfile:Z
+Volume=%h/caddy_static:/static:Z,ro
+Volume=caddy_config:/config
+Volume=caddy_data:/data

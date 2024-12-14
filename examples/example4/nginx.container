@@ -1,4 +1,0 @@
-[Container]
-ContainerName=nginx.example.com
-Image=docker.io/library/nginx
-Network=mynet.network
