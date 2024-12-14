@@ -9,5 +9,5 @@ Network=mynet.network
 Notify=true
 Volume=%h/Caddyfile:/etc/caddy/Caddyfile:Z
 Volume=%h/caddy_static:/static:Z,ro
-Volume=caddy_config:/config
-Volume=caddy_data:/data
+Volume=caddy_config.volume:/config
+Volume=caddy_data.volume:/data

@@ -3,3 +3,5 @@ Exec=/usr/bin/caddy run --config /etc/caddy/Caddyfile
 Image=docker.io/library/caddy:2.9.0-beta.3
 Notify=true
 Volume=%h/Caddyfile:/etc/caddy/Caddyfile:Z
+Volume=caddy_config.volume:/config
+Volume=caddy_data.volume:/data
