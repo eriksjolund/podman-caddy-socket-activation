@@ -201,7 +201,9 @@ Configure _socket activation_ for the unix socket _~/caddy.sock_. Let Caddy use 
    ```
 1. Access the _admin API endpoint_.
    ```
-   curl -s -H "Host: " --unix-socket $XDG_RUNTIME_DIR/caddy.sock http://localhost/config/ | jq . | head -4
+   curl -s -H "Host: " --unix-socket $XDG_RUNTIME_DIR/caddy.sock http://localhost/config/ | jq . | head -5
+   ```
+   The following output is printed
    ```
    {
      "admin": {
