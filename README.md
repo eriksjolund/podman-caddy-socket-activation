@@ -15,12 +15,12 @@ Overview of the examples
 
 ## Using Caddy with socket activation
 
-While Caddy can create sockets by itself, there are security and performance advantages to using
+While Caddy can create sockets by itself, there are security and performance advantages of using
 a service manager, such as systemd, for creating the sockets.
 Caddy does not need to create listening sockets as long as Caddy inherits those sockets
 from its parent process. This technique, commonly named _socket activation_, is
 supported for example when Caddy is running as a systemd service. Optionally Podman can start
-Caddy in the systemd service in case you want to run Caddy in a container.
+Caddy in the systemd service in case you want to run Caddy inside a container.
 
 Using _socket activation_ allows you to run Caddy with fewer privileges
 because Caddy would not need the privilege to create a socket.
