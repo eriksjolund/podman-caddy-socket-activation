@@ -48,8 +48,6 @@ Caddy is configured to reply _hello world_.
    mkdir -p ~/.config/systemd/user
    mkdir -p ~/.config/containers/systemd
    ```
-1. Build a caddy container image by following the instructions in
-   [../../build_caddy_container_image.md](build_caddy_container_image.md)
 1. Clone git repo
    ```
    git clone https://github.com/eriksjolund/podman-caddy-socket-activation.git
