@@ -75,11 +75,11 @@ Configure _socket activation_ for the unix socket _~/caddy.sock_. Let Caddy use 
    mkdir -p ~/.config/systemd/user
    mkdir -p ~/.config/containers/systemd
    ```
-1. Pull the caddy container image
+1. Pull _caddy_ container image
    ```
-   podman pull docker.io/library/caddy
+   podman pull docker.io/library/caddy:2.9.0-beta.3
    ```
-1. Pull the _whoami_ container image
+1. Pull _whoami_ container image
    ```
    podman pull docker.io/traefik/whoami
    ```
