@@ -30,6 +30,10 @@ Caddy is configured to reply _hello world_.
    mkdir -p ~/.config/systemd/user
    mkdir -p ~/.config/containers/systemd
    ```
+1. Pull _caddy_ container image
+   ```
+   podman pull docker.io/library/caddy:2.9.0-beta.3
+   ```
 1. Clone git repo
    ```
    git clone https://github.com/eriksjolund/podman-caddy-socket-activation.git

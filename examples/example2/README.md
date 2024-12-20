@@ -38,6 +38,14 @@ resolvable in public DNS.
    mkdir -p ~/.config/systemd/user
    mkdir -p ~/.config/containers/systemd
    ```
+1. Pull _caddy_ container image
+   ```
+   podman pull docker.io/library/caddy:2.9.0-beta.3
+   ```
+1. Pull _whoami_ container image
+   ```
+   podman pull docker.io/traefik/whoami
+   ```
 1. Clone git repo
    ```
    git clone https://github.com/eriksjolund/podman-caddy-socket-activation.git
