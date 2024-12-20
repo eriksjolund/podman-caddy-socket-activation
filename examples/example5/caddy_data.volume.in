@@ -1,0 +1,5 @@
+[Volume]
+
+User=${hostUID}
+Group=${hostGID}
+VolumeName=caddy_data
