@@ -4,6 +4,9 @@ This demo shows how to run a socket-activated caddy container with Podman.
 See also the tutorials [Podman socket activation](https://github.com/containers/podman/blob/main/docs/tutorials/socket_activation.md) and
 [podman-nginx-socket-activation](https://github.com/eriksjolund/podman-nginx-socket-activation).
 
+> [!NOTE]
+> Reloading the caddy configuration does not currently work (see https://github.com/caddyserver/caddy/issues/6631).
+
 Overview of the examples
 
 | Example | Type of service | Ports | Using quadlet | DNS entry required (ACME) | HTTP/3 | rootful/rootless podman | Comment |
