@@ -22,7 +22,7 @@ resolvable in public DNS.
 
 1. Create a test user
    ```
-   sudo useradd test
+   sudo useradd --create-home test
    ```
 1. Open a shell for user _test_
    ```
