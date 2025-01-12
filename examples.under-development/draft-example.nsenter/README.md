@@ -70,7 +70,7 @@ from the container image, then save the binary to `/usr/local/bin/caddy`
 
 1. Create user
    ```
-   sudo useradd test
+   sudo useradd --create-home test
    ```
 2. Open a login shell
    ```
@@ -138,7 +138,7 @@ Build and install /usr/local/bin/caddy from [caddy source code](https://github.c
    Verify that the results match the left-most IPv4 address shown by the command `hostname -I`.
 1. Create a test user
    ```
-   sudo useradd test
+   sudo useradd --create-home test
    ```
 1. Open a shell for user _test_
    ```

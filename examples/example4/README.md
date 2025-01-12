@@ -59,7 +59,7 @@ Configure _socket activation_ for the unix socket _~/caddy.sock_. Let Caddy use 
    Verify that the results match the left-most IPv4 address shown by the command `hostname -I`.
 1. Create a test user
    ```
-   sudo useradd test
+   sudo useradd --create-home test
    ```
 1. Open a shell for user _test_
    ```
