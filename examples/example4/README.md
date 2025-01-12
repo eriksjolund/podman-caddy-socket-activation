@@ -13,7 +13,7 @@ graph TB
 ```
 
 Set up a systemd user service _example4.service_ for the user _test_ where rootless podman is running
-the container image _docker.io/library/caddy:2.9.0-beta.3_.
+the container image _docker.io/library/caddy_.
 The caddy container is acting as an HTTP reverse proxy that forwards requests for
 https://whoami.example.com to a _whoami_ container.
 Caddy is also configured to be a static file server for requests to https://static.example.com.
@@ -77,7 +77,7 @@ Configure _socket activation_ for the unix socket _~/caddy.sock_. Let Caddy use 
    ```
 1. Pull _caddy_ container image
    ```
-   podman pull docker.io/library/caddy:2.9.0-beta.3
+   podman pull docker.io/library/caddy
    ```
 1. Pull _whoami_ container image
    ```

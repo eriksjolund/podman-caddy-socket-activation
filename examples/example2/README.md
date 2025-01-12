@@ -11,7 +11,7 @@ graph TB
 ```
 
 Set up a systemd user service _example2.service_ for the user _test_ where rootless podman is
-running the container image _docker.io/library/caddy:2.9.0-beta.3_. Configure _socket activation_ for TCP port 8080.
+running the container image _docker.io/library/caddy_. Configure _socket activation_ for TCP port 8080.
 The caddy container is acting as a HTTP reverse proxy that forwards requests to 2 backends.
 Requests to http://whoami.example.com:8080 are forwarded to the _whoami_ container.
 Requests to http://ngnix.example.com:8080 are forwarded to the _nginx_ container.
@@ -40,7 +40,7 @@ resolvable in public DNS.
    ```
 1. Pull _caddy_ container image
    ```
-   podman pull docker.io/library/caddy:2.9.0-beta.3
+   podman pull docker.io/library/caddy
    ```
 1. Pull _whoami_ container image
    ```

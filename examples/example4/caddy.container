@@ -4,7 +4,7 @@ AssertPathIsDirectory=%h/caddy_static
 
 [Container]
 Exec=/usr/bin/caddy run --config /etc/caddy/Caddyfile
-Image=docker.io/library/caddy:2.9.0-beta.3
+Image=docker.io/library/caddy
 Network=mynet.network
 Notify=true
 Volume=%h/Caddyfile:/etc/caddy/Caddyfile:Z

@@ -11,7 +11,7 @@ graph TB
 ```
 
 Set up a systemd user service _example3.service_ for the user _test_ where rootless podman is
-running a _docker.io/library/caddy:2.9.0-beta.3_ container. Configure _socket activation_ for the ports 80/TCP,
+running a _docker.io/library/caddy_ container. Configure _socket activation_ for the ports 80/TCP,
 443/TCP and 443/UDP. A TLS certificate is automatically retrieved with the
 [ACME](https://en.wikipedia.org/wiki/Automatic_Certificate_Management_Environment) prototol.
 Caddy is configured to reply _hello world_.
@@ -50,7 +50,7 @@ Caddy is configured to reply _hello world_.
    ```
 1. Pull _caddy_ container image
    ```
-   podman pull docker.io/library/caddy:2.9.0-beta.3
+   podman pull docker.io/library/caddy
    ```
 1. Clone git repo
    ```

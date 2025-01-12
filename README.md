@@ -54,10 +54,6 @@ Socket activation support was added to Caddy in
 
 * https://github.com/caddyserver/caddy/pull/6573
 
-Socket activation support is planned for Caddy 2.9.0 (yet to be released).
-For the moment being you can use _docker.io/library/caddy:2.9.0-beta.3_
-which has socket activation support.
-
 Caddy does not make use of file descriptor names that can be retrieved with [sd_listen_fds_with_names()](https://www.freedesktop.org/software/systemd/man/latest/sd_listen_fds.html).
 Instead file descriptor numbers are specified.
 Do not use multiple socket units. Use one socket unit so that the file descriptor numbers can be mapped to the listening sockets that are configured with `ListenStream=` and `ListenDatagram=`.
