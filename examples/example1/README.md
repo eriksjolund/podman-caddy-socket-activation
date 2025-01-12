@@ -9,7 +9,7 @@ graph TB
 ```
 
 Set up a systemd user service _example1.service_ for the user _test_ where rootless podman
-is running a _docker.io/library/caddy:2.9.0-beta.3_ container. Configure _socket activation_ for TCP port 8080.
+is running a _docker.io/library/caddy_ container. Configure _socket activation_ for TCP port 8080.
 Caddy is configured to reply _hello world_.
 
 1. Create a test user
@@ -32,7 +32,7 @@ Caddy is configured to reply _hello world_.
    ```
 1. Pull _caddy_ container image
    ```
-   podman pull docker.io/library/caddy:2.9.0-beta.3
+   podman pull docker.io/library/caddy
    ```
 1. Clone git repo
    ```

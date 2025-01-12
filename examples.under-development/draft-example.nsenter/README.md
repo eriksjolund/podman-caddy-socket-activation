@@ -61,7 +61,7 @@ Configure _socket activation_ for the unix socket _/srv/caddy/caddy.sock_. Let C
 
 Alternative 1.
 
-Pull _docker.io/library/caddy:2.9.0-beta.3_ and extract the caddy binary
+Pull _docker.io/library/caddy_ and extract the caddy binary
 from the container image, then save the binary to `/usr/local/bin/caddy`
 
 <details>
@@ -78,11 +78,11 @@ from the container image, then save the binary to `/usr/local/bin/caddy`
    ```
 3. Pull the caddy container image
    ```
-   podman pull docker.io/library/caddy:2.9.0-beta.3
+   podman pull docker.io/library/caddy
    ```
 4. Create a temporary container that will be used for mounting the container file system.
    ```
-   podman create --name tmpctr docker.io/library/caddy:2.9.0-beta.3
+   podman create --name tmpctr docker.io/library/caddy
    ```
 5. Run command
    ```
@@ -121,7 +121,7 @@ from the container image, then save the binary to `/usr/local/bin/caddy`
 
 Alternative 2.
 
-Build and install /usr/local/bin/caddy from source code (use [v2.9.0-beta.3](https://github.com/caddyserver/caddy/releases/tag/v2.9.0-beta.3) or newer)
+Build and install /usr/local/bin/caddy from [caddy source code](https://github.com/caddyserver/caddy)
 
 ### Set up quadlets and systemd services
 
