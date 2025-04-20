@@ -7,7 +7,7 @@ http://whoami.example.com {
 		protocols h1
 	}
 	log
-	reverse_proxy whoami.example.com:80
+	reverse_proxy whoami:80
 }
 
 http://nginx.example.com {
@@ -15,5 +15,5 @@ http://nginx.example.com {
 		protocols h1
 	}
 	log
-	reverse_proxy nginx.example.com:80
+	reverse_proxy nginx:80
 }

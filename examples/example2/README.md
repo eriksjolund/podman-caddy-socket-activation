@@ -179,6 +179,7 @@ The file [_mynet.network_](mynet.network) currently contains
 ```
 [Network]
 Internal=true
+Network=mynet
 ```
 
 The line
