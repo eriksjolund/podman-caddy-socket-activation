@@ -1,4 +1,4 @@
 [Container]
-ContainerName=whoami.example.com
+ContainerName=whoami
 Image=docker.io/traefik/whoami
 Network=mynet.network

@@ -1,41 +1,48 @@
 {
+	auto_https disable_redirects
+	default_bind fd/4 {
+		protocols h1 h2
+	}
+	default_bind fdgram/5 {
+		protocols h3
+	}
 	admin fd/6
 }
 
-http://whoami.example.com {
+http:// {
 	bind fd/3 {
 		protocols h1
 	}
+	redir https://{host}{uri}
 	log
-	reverse_proxy whoami.example.com:80
 }
 
-https://whoami.example.com {
-	bind fd/4 {
-		protocols h1 h2
-	}
-	bind fdgram/5 {
-		protocols h3
-	}
+whoami.example.com {
+	reverse_proxy whoami:80
 	log
-	reverse_proxy whoami.example.com:80
 }
 
+static.example.com {
+	root * /static
+	file_server
+	log
+}
+
+# listen on custom network
+http://whoami.example.com {
+	bind 0.0.0.0 [::1] {
+		protocols h1
+	}
+	reverse_proxy whoami:80
+	log
+}
+
+# listen on custom network
 http://static.example.com {
-       bind fd/3 {
-               protocols h1
-       }
-       root * /static
-       file_server
-}
-
-https://static.example.com {
-       bind fd/4 {
-               protocols h1 h2
-       }
-       bind fdgram/5 {
-               protocols h3
-       }
-       root * /static
-       file_server
+	bind 0.0.0.0 [::1] {
+		protocols h1
+	}
+	root * /static
+	file_server
+	log
 }

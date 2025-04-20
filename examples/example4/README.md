@@ -24,6 +24,12 @@ A TLS certificate is automatically retrieved with the
 Configure _socket activation_ for the unix socket _~/caddy.sock_. Let Caddy use this socket for the
 [admin API endpoint](https://caddyserver.com/docs/api).
 
+To allow containers on the custom network _mynet_ to access the caddy proxy,
+configure caddy to also listen on port 80 on the custom network _mynet_ and
+add `NetworkAlias=` for each hosted domain. For details about using `NetworkAlias=`
+with an HTTP reverse proxy, see
+[_Alternative 1: create extra socket and use NetworkAlias=_](https://github.com/eriksjolund/podman-networking-docs?tab=readme-ov-file#alternative-1-create-extra-socket-and-use-networkalias)
+
 1. Verify that unprivileged users are allowed to open port numbers 80 and above.
    Run the command
    ```
@@ -211,6 +217,66 @@ Configure _socket activation_ for the unix socket _~/caddy.sock_. Let Caddy use 
      },
      "apps": {
    ```
+1. Start a curl container on the custom network and download __http://whoami.example.com__.
+   ```
+   podman run --rm \
+              --name curl \
+              --network mynet \
+               docker.io/library/fedora curl -s http://whoami.example.com \
+       | grep X-Forwarded-For
+   ```
+   The following output is printed
+   ```
+   X-Forwarded-For: 10.89.0.43
+   ```
+   __result:__    Due to the line
+   ```
+   NetworkAlias=whoami.example.com
+   ```
+   in the file `caddy.container`, the connection will be made to the
+   caddy container. Caddy proxies the request to the _whoami_ container.
+   In the request cadd adds _X-Forwarded-For_ with the IPv4 address of the curl container.
+   While the curl container is running, this IP address can be shown with the command
+   ```
+   podman container inspect curl
+   ```
+1. Show caddy access logs from the last minute
+   ```
+   bash podman-caddy-socket-activation/show-caddy-logs-last-minute.bash
+   ```
+   The following output is printed
+   ```
+   {
+     "remote_ip": "10.89.0.43",
+     "remote_port": "44274",
+     "client_ip": "10.89.0.43",
+     "proto": "HTTP/1.1",
+     "method": "GET",
+     "host": "whoami.example.com",
+     "uri": "/",
+     "headers": {
+       "Accept": [
+	 "*/*"
+       ],
+       "User-Agent": [
+	 "curl/8.11.1"
+       ]
+     }
+   }
+   ```
+1. Start a curl container on the custom network and download __http://whoami.example.com__
+   but this time don't connect to the _caddy_ container, instead  use the __--connect-to__
+   option to connect to the _whoami_ container.
+   ```
+   podman run --rm \
+              --name curl \
+              --network mynet \
+               docker.io/library/fedora curl \
+	          --connect-to whoami.example.com:80:whoami:80 \
+		  -s http://whoami.example.com \
+       | grep X-Forwarded-For
+   ```
+   __result:__ The curl command succeeds but the `X-Forwarded-For` was not found in output.
 
 ### Using `Internal=true`
 

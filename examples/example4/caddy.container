@@ -11,3 +11,5 @@ Volume=%h/Caddyfile:/etc/caddy/Caddyfile:Z
 Volume=%h/caddy_static:/static:Z,ro
 Volume=caddy_config.volume:/config
 Volume=caddy_data.volume:/data
+NetworkAlias=static.example.com
+NetworkAlias=whoami.example.com
