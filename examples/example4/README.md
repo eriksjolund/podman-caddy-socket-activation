@@ -113,18 +113,18 @@ with an HTTP reverse proxy, see
    cp podman-caddy-socket-activation/examples/example4/*.volume \
       ~/.config/containers/systemd/
    ```
+1. Create directories
+   ```
+   mkdir ~/caddy_etc ~/caddy_static ~/caddy_adminsocket
+   ```
 1. Install the _Caddyfile_
    ```
    cp podman-caddy-socket-activation/examples/example4/Caddyfile \
-      ~/Caddyfile
+      ~/caddy_etc/Caddyfile
    ```
    (The path _~/Caddyfile_ was arbitrarily chosen)
 1. Edit _~/Caddyfile_ so that _example.com_ is replaced with the hostname of
    your computer.
-1. Create directory for static files
-   ```
-   mkdir ~/caddy_static
-   ```
 1. Create a static files
    ```
    echo "my static file" > ~/caddy_static/file.txt
