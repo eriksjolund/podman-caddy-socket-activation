@@ -1,8 +1,11 @@
 # podman-caddy-socket-activation
 
 This demo shows how to run a socket-activated caddy container with Podman.
-See also the tutorials [Podman socket activation](https://github.com/containers/podman/blob/main/docs/tutorials/socket_activation.md) and
-[podman-nginx-socket-activation](https://github.com/eriksjolund/podman-nginx-socket-activation).
+See also
+
+* [Podman socket activation](https://github.com/containers/podman/blob/main/docs/tutorials/socket_activation.md)
+* The section _HTTP reverse proxy_ in [podman-networking-docs](https://github.com/eriksjolund/podman-networking-docs?tab=readme-ov-file#http-reverse-proxy)
+* [podman-nginx-socket-activation](https://github.com/eriksjolund/podman-nginx-socket-activation)
 
 Overview of the examples
 
