@@ -1,2 +1,3 @@
 [Network]
+Options=isolate=true
 NetworkName=mynet
