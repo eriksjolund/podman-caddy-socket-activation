@@ -178,6 +178,7 @@ The file [_mynet.network_](mynet.network) currently contains
 
 ```
 [Network]
+Options=isolate=true
 Internal=true
 Network=mynet
 ```

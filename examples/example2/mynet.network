@@ -1,3 +1,4 @@
 [Network]
+Options=isolate=true
 Internal=true
 NetworkName=mynet
