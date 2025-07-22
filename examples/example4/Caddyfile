@@ -1,5 +1,4 @@
 {
-	auto_https disable_redirects
 	default_bind fd/4 {
 		protocols h1 h2
 	}
