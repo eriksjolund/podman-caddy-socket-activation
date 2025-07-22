@@ -1,5 +1,4 @@
 {
-	auto_https disable_redirects
 	admin fd/6
 }
 
