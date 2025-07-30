@@ -2,5 +2,7 @@
 Exec=/usr/bin/caddy run --config /etc/caddy/Caddyfile
 Image=docker.io/library/caddy
 Network=mynet.network
+NoNewPrivileges=true
 Notify=true
+ReadOnly=true
 Volume=%h/Caddyfile:/etc/caddy/Caddyfile:Z
