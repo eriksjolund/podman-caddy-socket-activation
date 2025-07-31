@@ -14,7 +14,8 @@ Overview of the examples
 | [Example 1](examples/example1) | systemd user service | 8080/TCP | :heavy_check_mark: |  |  | rootless podman | hello world web server |
 | [Example 2](examples/example2) | systemd user service | 8080/TCP | :heavy_check_mark: |  |  | rootless podman | http reverse proxy with TCP backends |
 | [Example 3](examples/example3) | systemd user service | 80/TCP, 443/TCP, 443/UDP | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | rootless podman | hello world web server |
-| [Example 4](examples/example4) | systemd user service | 80/TCP, 443/TCP, 443/UDP | :heavy_check_mark: |  :heavy_check_mark: | :heavy_check_mark: | rootless podman | http reverse proxy with TCP backends |
+| [Example 4](examples/example4) | systemd user service | 80/TCP, 443/TCP, 443/UDP | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | rootless podman | http reverse proxy with TCP backends |
+| [Example 5](examples/example5) | systemd system service | 80/TCP, 443/TCP, 443/UDP | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | rootful podman | http reverse proxy with TCP backends |
 
 ## Using Caddy with socket activation
 
