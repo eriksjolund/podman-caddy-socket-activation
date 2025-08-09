@@ -42,7 +42,7 @@ as the normal network on the host.
 The source IP address in TCP connections is preserved when using socket activation.
 This can otherwise be a problem when using rootless Podman with Pasta.
 Source IP addresses are not preserved in TCP connections from ports that were published the
-conventional way, that is with `--publish`, if the container is running in an internal network
+conventional way, that is with `--publish`, if the container is running in a custom network
 by rootless Podman with Pasta.
 
 For more details about advantages of using socket activation with Podman, see
