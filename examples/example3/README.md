@@ -61,6 +61,11 @@ Caddy is configured to reply _hello world_.
    cp podman-caddy-socket-activation/examples/example3/caddy.container \
       ~/.config/containers/systemd/
    ```
+1. Install the volume unit files
+   ```
+   cp podman-caddy-socket-activation/examples/example3/*.volume \
+      ~/.config/containers/systemd/
+   ```
 1. Install the socket unit files
    ```
    cp podman-caddy-socket-activation/examples/example3/caddy.socket \
