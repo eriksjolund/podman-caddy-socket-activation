@@ -1,7 +1,9 @@
 [Container]
 Exec=/usr/bin/caddy run --config /etc/caddy/Caddyfile
 Image=docker.io/library/caddy
+NoNewPrivileges=true
 Notify=true
+ReadOnly=true
 Volume=%h/Caddyfile:/etc/caddy/Caddyfile:Z
 Volume=caddy_config.volume:/config
 Volume=caddy_data.volume:/data
