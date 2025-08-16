@@ -1,5 +1,5 @@
 {
-	admin off
+	admin unix//run/admin.sock
 }
 
 http://whoami.example.com {

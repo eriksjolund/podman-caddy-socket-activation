@@ -5,7 +5,7 @@
 	default_bind fdgram/5 {
 		protocols h3
 	}
-	admin unix//caddy_adminsocket/sock|0200
+	admin unix//run/admin.sock
 }
 
 http:// {

@@ -1,11 +1,10 @@
 [Unit]
-AssertPathIsDirectory=%h/caddy_adminsocket
 AssertPathIsDirectory=%h/caddy_etc
 AssertPathExists=%h/caddy_etc/Caddyfile
 AssertPathIsDirectory=%h/caddy_static
 
 [Service]
-ExecReload=podman exec caddy /usr/bin/caddy reload --config /etc/caddy/Caddyfile --force
+ExecReload=podman exec caddy /usr/bin/caddy reload --config /etc/caddy/Caddyfile --address unix//run/admin.sock --force
 
 [Container]
 ContainerName=caddy
@@ -15,7 +14,6 @@ Network=mynet.network
 Notify=true
 Volume=%h/caddy_etc:/etc/caddy:Z
 Volume=%h/caddy_static:/static:Z,ro
-Volume=%h/caddy_adminsocket:/caddy_adminsocket:Z
 Volume=caddy_config.volume:/config
 Volume=caddy_data.volume:/data
 NetworkAlias=static.example.com
