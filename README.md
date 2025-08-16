@@ -71,33 +71,6 @@ Do not use multiple socket units. Use one socket unit so that the file descripto
 Quote from man page [systemd.socket(5)](https://www.freedesktop.org/software/systemd/man/latest/systemd.socket.html):
 _"Sockets configured in one unit are passed in the order of configuration, but no ordering between socket units is specified"_
 
-### Support for reloading the Caddy configuration
-
-Here is an outline of how to allow reloading the Caddy configuration.
-
-To support reloading the Caddy configuration, do the following steps
-
-1. Bind-mount an empty directory into the Caddy container to the path `/caddy_adminsocket` (The path was arbitrarily chosen).
-2. Add the global Caddyfile option [`admin`](https://caddyserver.com/docs/caddyfile/options#admin) to the Caddyfile.
-   ```
-   admin unix//caddy_adminsocket/sock|0200
-   ```
-3. Add the systemd directive `ExecReload` under the `[Service]` section in the caddy container unit (quadlet).
-   ```
-   ExecReload=podman exec caddy /usr/bin/caddy reload --config /etc/caddy/Caddyfile --force
-   ```
-   (`caddy` is an arbitrarily chosen name. It should match the name of the container that can be set with `ContainerName=` under the `[Container]` section)
-
-
-To reload the Caddyfile, run
-```
-systemctl --user reload caddy.service
-```
-
-See also:
-
-[Example 4](examples/example4) that is configured to allow reloading the Caddy configuration.
-
 > [!NOTE]
-> Reloading the caddy configuration does not currently work when [`admin`](https://caddyserver.com/docs/caddyfile/options#admin) is set to
-a file descriptor (see issue https://github.com/caddyserver/caddy/issues/6631).
+> Reloading the caddy configuration works when [`admin`](https://caddyserver.com/docs/caddyfile/options#admin)
+is set to a unix socket path or a TCP listening port, but not when set to a file descriptor (see issue https://github.com/caddyserver/caddy/issues/6631).

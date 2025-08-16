@@ -37,6 +37,7 @@ resolvable in public DNS.
    ```
    mkdir -p ~/.config/systemd/user
    mkdir -p ~/.config/containers/systemd
+   mkdir ~/caddy_etc
    ```
 1. Pull _caddy_ container image
    ```
@@ -68,9 +69,9 @@ resolvable in public DNS.
 1. Install the _Caddyfile_
    ```
    cp podman-caddy-socket-activation/examples/example2/Caddyfile \
-      ~/Caddyfile
+      ~/caddy_etc/Caddyfile
    ```
-   (The path _~/Caddyfile_ was arbitrarily chosen)
+   (The path _~/caddy_etc/Caddyfile_ was arbitrarily chosen)
 1. Reload the systemd user manager
    ```
    systemctl --user daemon-reload

@@ -47,6 +47,7 @@ Caddy is configured to reply _hello world_.
    ```
    mkdir -p ~/.config/systemd/user
    mkdir -p ~/.config/containers/systemd
+   mkdir ~/caddy_etc
    ```
 1. Pull _caddy_ container image
    ```
@@ -74,9 +75,9 @@ Caddy is configured to reply _hello world_.
 1. Install the _Caddyfile_
    ```
    cp podman-caddy-socket-activation/examples/example3/Caddyfile \
-      ~/Caddyfile
+      ~/caddy_etc/Caddyfile
    ```
-   (The path _~/Caddyfile_ was arbitrarily chosen)
+   (The path _~/caddy_etc/Caddyfile_ was arbitrarily chosen)
 1. Edit _~/Caddyfile_ so that _example.com_ is replaced with the hostname of
    your computer.
 1. Reload the systemd user manager
