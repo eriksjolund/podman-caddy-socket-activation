@@ -5,6 +5,7 @@ AssertPathIsDirectory=%h/caddy_static
 
 [Service]
 ExecReload=podman exec caddy /usr/bin/caddy reload --config /etc/caddy/Caddyfile --address unix//run/admin.sock --force
+Sockets=caddy.socket
 
 [Container]
 ContainerName=caddy
