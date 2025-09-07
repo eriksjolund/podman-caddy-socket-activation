@@ -45,3 +45,22 @@ http://static.example.com {
 	file_server
 	log
 }
+
+# listen on custom network
+https://whoami.example.com {
+       bind 0.0.0.0 [::1] {
+               protocols h1 h2 h3
+       }
+       reverse_proxy whoami:80
+       log
+}
+
+# listen on custom network
+https://static.example.com {
+       bind 0.0.0.0 [::1] {
+               protocols h1 h2 h3
+       }
+       root * /static
+       file_server
+       log
+}
