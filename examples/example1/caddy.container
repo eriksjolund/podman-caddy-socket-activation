@@ -10,5 +10,7 @@ ContainerName=caddy
 Exec=/usr/bin/caddy run --config /etc/caddy/Caddyfile
 Image=docker.io/library/caddy
 Network=none
+NoNewPrivileges=true
 Notify=true
+ReadOnly=true
 Volume=%h/caddy_etc:/etc/caddy:Z
