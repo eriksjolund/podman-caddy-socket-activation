@@ -1,0 +1,4 @@
+[Network]
+Options=isolate=true
+# To give the containers access to the internet, remove the line `Internal=true`
+Internal=true

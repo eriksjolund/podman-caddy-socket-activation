@@ -1,0 +1,11 @@
+{
+	admin unix//run/admin.sock
+}
+
+http://whoami.example.com {
+	bind fd/3 {
+		protocols h1
+	}
+	log
+	reverse_proxy whoami:80
+}
