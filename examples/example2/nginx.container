@@ -2,3 +2,5 @@
 ContainerName=nginx
 Image=docker.io/library/nginx
 Network=mynet.network
+NoNewPrivileges=true
+ReadOnly=true
