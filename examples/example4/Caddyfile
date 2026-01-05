@@ -38,7 +38,6 @@ static.example.com {
 	log
 }
 
-
 # Configure listening sockets on the custom network mynet.network
 # These sockets are created by caddy and will thus be in the same
 # network namespace that caddy is running in.
@@ -64,19 +63,19 @@ http://static.example.com {
 
 # listen on custom network
 https://whoami.example.com {
-       bind 0.0.0.0 [::1] {
-               protocols h1 h2 h3
-       }
-       reverse_proxy whoami:80
-       log
+	bind 0.0.0.0 [::1] {
+		protocols h1 h2 h3
+	}
+	reverse_proxy whoami:80
+	log
 }
 
 # listen on custom network
 https://static.example.com {
-       bind 0.0.0.0 [::1] {
-               protocols h1 h2 h3
-       }
-       root * /static
-       file_server
-       log
+	bind 0.0.0.0 [::1] {
+		protocols h1 h2 h3
+	}
+	root * /static
+	file_server
+	log
 }
