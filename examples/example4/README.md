@@ -52,6 +52,17 @@ with an HTTP reverse proxy, see
    rootless Podman.
    See Example 5 (_TODO: create example 5_) for how to run a Caddy reverse proxy with rootful Podman
    in a systemd system service.
+1. Check the IPv4 address of the main network interface.
+   Run the command
+   ```
+   hostname -I
+   ```
+   The following output is printed
+   ```
+   192.0.2.5 fd25:c7f8:948a:0:912d:3900:d5c4:45ad
+   ```
+   __result:__ The IPv4 address of the main network interface is _192.0.2.5_
+   (the address furthest to the left)
 1. Verify that the domain names _nginx.example.com_ and _whoami.example.com_ resolve to
    the IP address of the host's main IPv4 interface.
    Run commands to resolve the hostnames.
@@ -62,7 +73,7 @@ with an HTTP reverse proxy, see
    ```
    host whoami.example.com
    ```
-   Verify that the results match the left-most IPv4 address shown by the command `hostname -I`.
+   Verify that the results match the left-most IPv4 address detected in the previous step.
 1. Create a test user
    ```
    sudo useradd --create-home test
@@ -152,17 +163,6 @@ with an HTTP reverse proxy, see
    ```
    __result:__ The IPv4 address  127.0.0.1 matches the IP address of
    _X-Forwarded-For_
-1. Check the IPv4 address of the main network interface.
-   Run the command
-   ```
-   hostname -I
-   ```
-   The following output is printed
-   ```
-   192.0.2.5 fd25:c7f8:948a:0:912d:3900:d5c4:45ad
-   ```
-   __result:__ The IPv4 address of the main network interface is _192.0.2.5_
-   (the address furthest to the left)
 1. Download the URL __https://whoami.example.com__ from the caddy
    container and see that the request is proxied to the container _whoami_.
    Resolve _whoami.example.com_ to the IPv4 address of the main network interface.
