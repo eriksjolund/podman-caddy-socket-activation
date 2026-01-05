@@ -15,7 +15,5 @@ ContainerName=example99
 Exec=/usr/bin/caddy run --config /etc/caddy/Caddyfile
 Image=docker.io/library/caddy
 Network=systemd-example99-net
+Notify=true
 Volume=/home/${envsubst_user}/caddy_etc:/etc/caddy:Z
-
-# TODO: check if "Type=notify" can be used?
-#Notify=true
