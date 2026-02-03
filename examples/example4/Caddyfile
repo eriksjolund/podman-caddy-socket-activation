@@ -16,6 +16,8 @@
 		protocols h3
 	}
 	admin unix//run/admin.sock
+
+	auto_https disable_redirects
 }
 
 http:// {
