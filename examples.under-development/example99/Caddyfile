@@ -1,5 +1,6 @@
 {
 	admin unix//run/admin.sock
+	auto_https disable_redirects
 }
 
 http://whoami.example.com {
