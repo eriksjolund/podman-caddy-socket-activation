@@ -1,6 +1,8 @@
 [Unit]
 Requires=user@${envsubst_uid}.service
 After=user@${envsubst_uid}.service
+After=caddy.socket
+Requires=caddy.socket
 RequiresMountsFor=/run/user/${envsubst_uid}/containers
 
 AssertPathIsDirectory=/home/${envsubst_user}/caddy_etc
