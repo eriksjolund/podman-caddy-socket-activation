@@ -1,6 +1,8 @@
 [Unit]
 AssertPathExists=/srv/caddy/Caddyfile
 AssertPathIsDirectory=/srv/caddy/caddy_static
+After=caddy.socket
+Requires=caddy.socket
 
 [Service]
 CapabilityBoundingSet=

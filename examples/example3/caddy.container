@@ -1,6 +1,8 @@
 [Unit]
 AssertPathIsDirectory=%h/caddy_etc
 AssertPathExists=%h/caddy_etc/Caddyfile
+After=caddy.socket
+Requires=caddy.socket
 
 [Service]
 ExecReload=podman exec caddy /usr/bin/caddy reload --config /etc/caddy/Caddyfile --address unix//run/admin.sock --force
