@@ -7,6 +7,13 @@ See also
 * The section _HTTP reverse proxy_ in [podman-networking-docs](https://github.com/eriksjolund/podman-networking-docs?tab=readme-ov-file#http-reverse-proxy)
 * [podman-nginx-socket-activation](https://github.com/eriksjolund/podman-nginx-socket-activation)
 
+> [!IMPORTANT]
+> Caddy version 2.11.1 or 2.11.0 (released February 2026) introduced a regression
+> related to ACME and socket activation.
+> For details, see
+> https://github.com/eriksjolund/podman-caddy-socket-activation/issues/77
+> and https://github.com/caddyserver/caddy/issues/7525
+
 Overview of the examples
 
 | Example | Type of service | Ports | Using quadlet | DNS entry required (ACME) | HTTP/3 | rootful/rootless podman | Comment |
