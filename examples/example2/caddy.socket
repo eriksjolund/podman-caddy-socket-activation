@@ -1,6 +1,7 @@
 [Socket]
 ListenStream=[::]:8080
 BindIPv6Only=both
+NoDelay=yes
 
 [Install]
 WantedBy=sockets.target

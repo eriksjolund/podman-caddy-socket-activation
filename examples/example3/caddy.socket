@@ -3,6 +3,7 @@ ListenStream=[::]:80
 ListenStream=[::]:443
 ListenDatagram=[::]:443
 BindIPv6Only=both
+NoDelay=yes
 
 [Install]
 WantedBy=sockets.target

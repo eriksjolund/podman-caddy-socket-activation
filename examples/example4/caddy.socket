@@ -1,5 +1,6 @@
 [Socket]
 BindIPv6Only=both
+NoDelay=yes
 
 ### sockets for the HTTP reverse proxy
 # fd/3
