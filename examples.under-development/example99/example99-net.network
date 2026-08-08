@@ -1,4 +1,4 @@
 [Network]
-Options=isolate=true
+Options=isolate=strict
 # To give the containers access to the internet, remove the line `Internal=true`
 Internal=true
