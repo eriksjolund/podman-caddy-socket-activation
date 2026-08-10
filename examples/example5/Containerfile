@@ -1,0 +1,13 @@
+FROM docker.io/library/caddy
+# here assuming docker.io/library/caddy contains a caddy executable with socket activation support
+
+
+# populate the volumes with some initial content
+RUN echo hello > /srv/file.txt
+COPY ./Caddyfile /etc/caddy/Caddyfile
+
+RUN chown -R guest:users /data /config /srv
+
+VOLUME /data
+VOLUME /config
+VOLUME /srv

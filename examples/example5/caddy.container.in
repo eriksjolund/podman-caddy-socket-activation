@@ -1,0 +1,31 @@
+[Unit]
+
+Requires=caddy_config-volume.service
+After=caddy_config-volume.service
+Requires=caddy_data-volume.service
+After=caddy_data-volume.service
+Requires=caddy_srv-volume.service
+After=caddy_srv-volume.service
+
+[Container]
+Exec=/usr/bin/caddy run --config /etc/caddy/Caddyfile --adapter caddyfile --resume
+
+Image=localhost/caddy
+
+Mount=type=volume,source=caddy_config,destination=/config,Z=true,idmap=uids=@${hostUID}-405-1;gids=@${hostGID}-100-1
+Mount=type=volume,source=caddy_data,destination=/data,Z=true,idmap=uids=@${hostUID}-405-1;gids=@${hostGID}-100-1
+Mount=type=volume,source=caddy_srv,destination=/srv,Z=true,idmap=uids=@${hostUID}-405-1;gids=@${hostGID}-100-1
+
+Network=mynet.network
+Notify=true
+
+# The container image docker.io/library/caddy does not have any caddy user
+# but it has the user "guest" that we could use instead.
+#
+# Running the command "/usr/bin/id guest" in the container prints the output
+# "uid=405(guest) gid=100(users) groups=100(users)"
+
+User=405:100
+UserNS=auto
+
+Volume=%h/Caddyfile:/etc/caddy/Caddyfile:Z
